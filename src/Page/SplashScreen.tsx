@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
+  AccessibilityInfo,
   Image,
   SafeAreaView,
   StatusBar,
@@ -13,7 +14,12 @@ function SplashScreen(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}
+      accessible={true}
+      accessibilityHint="Brainy is loading"
+      accessibilityLanguage="en"
+      accessibilityViewIsModal={true}
+    >
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
       />
