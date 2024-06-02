@@ -2,6 +2,7 @@ import {NavigationProp, ParamListBase} from '@react-navigation/native';
 import React from 'react';
 import {
   Image,
+  Pressable,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -25,18 +26,16 @@ function SplashScreen({navigation}: SplashScreenProps): React.JSX.Element {
       accessibilityLanguage="en"
       accessibilityViewIsModal={true}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <View style={styles.allCenter}>
+      <Pressable
+        style={styles.allCenter}
+        onPress={() => navigation.navigate('Landing')}>
         <Image
           source={require('../../assets/img/brainy.png')}
           style={styles.imageLogo}
         />
-        <Text
-          style={styles.textLogo}
-          onPress={() => navigation.navigate('Landing')}>
-          Brainy
-        </Text>
+        <Text style={styles.textLogo}>Brainy</Text>
         <Text style={styles.subText}>your second brain</Text>
-      </View>
+      </Pressable>
     </SafeAreaView>
   );
 }

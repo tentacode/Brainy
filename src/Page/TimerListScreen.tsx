@@ -1,12 +1,13 @@
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 import React from 'react';
 import {
+  FlatList,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   useColorScheme,
-  View,
 } from 'react-native';
 
 interface TimerListScreenProps {
@@ -18,14 +19,36 @@ function TimerListScreen({
 }: TimerListScreenProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
+  const timers = [
+    {title: 'Tooth brushing', emoji: '🦷'},
+    {title: 'Plank', emoji: '💪'},
+    {title: 'Spaghetti', emoji: '🍝'},
+    {title: 'Frozen beers', emoji: '🍺'},
+    {
+      title: 'One very long text that should span on multiple lines',
+      emoji: '💀',
+    },
+  ];
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <View style={styles.allCenter}>
-        <Text style={styles.textTitle}>Timer list</Text>
-        <Text onPress={() => navigation.navigate('Timer')}>Timer 1</Text>
-        <Text onPress={() => navigation.navigate('Timer')}>Timer 2</Text>
-      </View>
+      <FlatList
+        data={timers}
+        renderItem={({item}) => (
+          <TouchableOpacity
+            accessible={true}
+            accessibilityLabel={item.title}
+            accessibilityRole="button"
+            style={styles.listItem}
+            onPress={() => navigation.navigate('Timer')}>
+            <>
+              <Text style={styles.listItemEmoji}>{item.emoji}</Text>
+              <Text style={styles.listItemTitle}>{item.title}</Text>
+            </>
+          </TouchableOpacity>
+        )}
+      />
     </SafeAreaView>
   );
 }
@@ -35,15 +58,22 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
   },
-  allCenter: {
+  listItem: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
-  textTitle: {
-    fontSize: 50,
-    fontWeight: 'bold',
-    color: 'black',
+  listItemEmoji: {
+    fontSize: 35,
+    padding: 5,
+  },
+  listItemTitle: {
+    flex: 1,
+    fontSize: 24,
+    marginLeft: 10,
   },
 });
 

@@ -22,7 +22,6 @@ function StreakListScreen({
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <View style={styles.allCenter}>
-        <Text style={styles.textTitle}>Streak list</Text>
         <Text onPress={() => navigation.navigate('Streak')}>Streak 1</Text>
         <Text onPress={() => navigation.navigate('Streak')}>Streak 2</Text>
       </View>
@@ -39,11 +38,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  textTitle: {
-    fontSize: 50,
-    fontWeight: 'bold',
-    color: 'black',
   },
 });
 

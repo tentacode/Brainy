@@ -14,11 +14,27 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Splash">
-        <Stack.Screen name="Landing" component={LandingScreen} />
-        <Stack.Screen name="Splash" component={SplashScreen} />
-        <Stack.Screen name="TimerList" component={TimerListScreen} />
+        <Stack.Screen
+          name="Splash"
+          component={SplashScreen}
+          options={{headerShown: false, title: ''}}
+        />
+        <Stack.Screen
+          name="Landing"
+          component={LandingScreen}
+          options={{title: 'Brainy'}}
+        />
+        <Stack.Screen
+          name="TimerList"
+          component={TimerListScreen}
+          options={{title: '⏲️ Timers'}}
+        />
         <Stack.Screen name="Timer" component={TimerScreen} />
-        <Stack.Screen name="StreakList" component={StreakListScreen} />
+        <Stack.Screen
+          name="StreakList"
+          component={StreakListScreen}
+          options={{title: '🔥 Streaks'}}
+        />
         <Stack.Screen name="Streak" component={StreakScreen} />
       </Stack.Navigator>
     </NavigationContainer>
